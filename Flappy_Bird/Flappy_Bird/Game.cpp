@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Globals.h"
 #include <sstream>
+#include <SFML/Audio.hpp>
 Game::Game(sf::RenderWindow& window) : win(window), 
 is_space_pressed(false), 
 run_game(true),
@@ -37,6 +38,15 @@ score(0)
 	score_text.setFillColor(sf::Color::Black);
 	score_text.setPosition(15, 15);
 	score_text.setString("Score: 0");
+
+	wingBuffer.loadFromFile("assets/sfx/flap.wav");
+	pointBuffer.loadFromFile("assets/sfx/score.wav");
+	hitBuffer.loadFromFile("assets/sfx/dead.wav");
+	wingSound.setBuffer(wingBuffer);
+	wingSound.setVolume(30.0f);
+	pointSound.setBuffer(pointBuffer);
+	pointSound.setVolume(30.0f);
+	hitSound.setBuffer(hitBuffer);
 
 	Pipe::loadTextures();
 }
@@ -89,10 +99,12 @@ void Game::startGameLoop()
 				{
 					is_space_pressed = true;
 					bird.setShouldFly(true);
+					wingSound.play();
 				}
 				if (event.key.code == sf::Keyboard::Space && is_space_pressed)
 				{
 					bird.flapBird(dt);
+					wingSound.play();
 				}
 			}
 			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left && !run_game)
@@ -121,6 +133,7 @@ void Game::checkCollisions()
 		{
 			is_space_pressed = false;
 			run_game = false;
+			hitSound.play();
 		}
 	}
 }
@@ -143,6 +156,7 @@ void Game::checkScore()
 			{
 				score++;
 				score_text.setString("Score: " + toString(score));
+				pointSound.play();
 				start_monitoring = false;
 			}
 		}
