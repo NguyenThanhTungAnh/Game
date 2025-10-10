@@ -4,6 +4,7 @@
 #include<vector>
 #include "Pipe.h"
 #include<random>
+#include<SFML/Audio.hpp>
 class Game
 {
 public:
@@ -13,6 +14,12 @@ public:
 private:
 	sf::Texture bg_texture, ground_texture;
 	sf::Sprite bg_sprite, ground_sprite1, ground_sprite2;
+	sf::SoundBuffer wingBuffer;
+	sf::SoundBuffer pointBuffer;
+	sf::SoundBuffer hitBuffer;
+	sf::Sound wingSound;
+	sf::Sound pointSound;
+	sf::Sound hitSound;
 	Bird bird;
 	bool is_space_pressed, run_game,start_monitoring;
 	const int move_speed = 270;
