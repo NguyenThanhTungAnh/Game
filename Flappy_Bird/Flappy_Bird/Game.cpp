@@ -202,7 +202,10 @@ void Game::draw()
 	win.draw(ground_sprite1);
 	win.draw(ground_sprite2);
 	win.draw(bird.bird_sprite);
-	win.draw(score_text);
+	if (is_space_pressed)
+	{
+		win.draw(score_text);
+	}
 
 	if (!run_game)
 	{
