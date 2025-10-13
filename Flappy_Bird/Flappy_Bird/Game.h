@@ -5,6 +5,7 @@
 #include "Pipe.h"
 #include<random>
 #include<SFML/Audio.hpp>
+#include<fstream>
 class Game
 {
 public:
@@ -12,8 +13,8 @@ public:
 	sf::RenderWindow& win;
 	void startGameLoop();
 private:
-	sf::Texture bg_texture, ground_texture;
-	sf::Sprite bg_sprite, ground_sprite1, ground_sprite2;
+	sf::Texture bg_texture, ground_texture, score_best_texture, restart_texture;
+	sf::Sprite bg_sprite, ground_sprite1, ground_sprite2, score_best_sprite, restart_sprite;
 	sf::SoundBuffer wingBuffer;
 	sf::SoundBuffer pointBuffer;
 	sf::SoundBuffer hitBuffer;
@@ -30,11 +31,16 @@ private:
 	void restartGame();
 	void checkScore();
 	std::string toString(int);
-	int pipe_counter, pipe_spawn_time,score;
+	int pipe_counter, pipe_spawn_time,score, highScore;
+	void UpdateHighScore();
+	void SaveHighScore();
 	std::vector<Pipe> pipes;
 	std::random_device rd;
 	std::uniform_int_distribution<int> dist{ 250,550 };
 	sf::Font font;
-	sf::Text restart_text,score_text;
+	sf::Text score_text,currentScore_Text;
+	sf::Text highestScoreText;
+	const std::string HIGHSCORE_FILE = "highestscore.txt";
+	int LoadHighScore();
 };
 

@@ -1,7 +1,8 @@
-#include "Game.h"
+﻿#include "Game.h"
 #include "Globals.h"
 #include <sstream>
 #include <SFML/Audio.hpp>
+#include<fstream>
 Game::Game(sf::RenderWindow& window) : win(window), 
 is_space_pressed(false), 
 run_game(true),
@@ -26,18 +27,37 @@ score(0)
 	ground_sprite1.setPosition(0, 578);
 	ground_sprite2.setPosition(ground_sprite1.getGlobalBounds().width,578);
 
-	font.loadFromFile("assets/PS2T.ttf");
-	restart_text.setFont(font);
-	restart_text.setCharacterSize(40);
-	restart_text.setFillColor(sf::Color::Black);
-	restart_text.setPosition(30, 665);
-	restart_text.setString("Restart Game!!");
+	score_best_texture.loadFromFile("assets/score_best.png");
+	score_best_sprite.setTexture(score_best_texture);
+	score_best_sprite.setScale(SCALE_FACTOR* 0.6, SCALE_FACTOR* 0.6);
+	score_best_sprite.setPosition(222, 200);
 
+	restart_texture.loadFromFile("assets/restart.png");
+	restart_sprite.setTexture(restart_texture);
+	restart_sprite.setScale(SCALE_FACTOR*0.4 , SCALE_FACTOR *0.4);
+	restart_sprite.setPosition(169,300);
+
+	font.loadFromFile("assets/PS2T.ttf");
 	score_text.setFont(font);
 	score_text.setCharacterSize(20);
 	score_text.setFillColor(sf::Color::Black);
 	score_text.setPosition(15, 15);
 	score_text.setString("Score: 0");
+
+	
+	currentScore_Text.setFont(font);
+	currentScore_Text.setCharacterSize(23);
+	currentScore_Text.setFillColor(sf::Color(84, 56, 71));
+	currentScore_Text.setPosition(290, 269);
+	currentScore_Text.setString(std::to_string(score));
+	
+
+	highestScoreText.setFont(font);
+	highestScoreText.setCharacterSize(23);
+	highestScoreText.setFillColor(sf::Color(84, 56, 71));
+	highestScoreText.setPosition(290, 279);
+	highestScoreText.setString("");
+
 
 	wingBuffer.loadFromFile("assets/sfx/flap.wav");
 	pointBuffer.loadFromFile("assets/sfx/score.wav");
@@ -49,6 +69,7 @@ score(0)
 	hitSound.setBuffer(hitBuffer);
 
 	Pipe::loadTextures();
+	highScore = LoadHighScore();
 }
 
 void Game::doProcessing(sf::Time& dt)
@@ -109,7 +130,7 @@ void Game::startGameLoop()
 			}
 			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left && !run_game)
 			{
-				if (restart_text.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+				if (restart_sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
 				{
 					restartGame();
 				}
@@ -134,6 +155,13 @@ void Game::checkCollisions()
 			is_space_pressed = false;
 			run_game = false;
 			hitSound.play();
+			if (score > highScore) {
+				SaveHighScore();      
+				highScore = score;    // CẬP NHẬT biến thành viên high score
+			}
+
+			// 2. Cập nhật hiển thị (chỉ một lần) khi trò chơi kết thúc
+			UpdateHighScore();
 		}
 	}
 }
@@ -178,7 +206,11 @@ void Game::draw()
 
 	if (!run_game)
 	{
-		win.draw(restart_text);
+		win.draw(score_best_sprite);
+		win.draw(currentScore_Text);
+		win.draw(highestScoreText);
+		win.draw(restart_sprite);
+		
 	}
 }
 
@@ -208,6 +240,7 @@ void Game::restartGame()
 	pipes.clear();
 	score=0;
 	score_text.setString("Score: 0");
+	
 }
 
 std::string Game::toString(int num)
@@ -215,4 +248,40 @@ std::string Game::toString(int num)
 	std::stringstream ss;
 	ss << num;
 	return ss.str();
+}
+
+int Game::LoadHighScore()
+{
+	std::ifstream file(HIGHSCORE_FILE);
+	int loadedScore = 0;
+	if (file.is_open())
+	{
+		file >> loadedScore;
+		file.close();
+	}
+	return loadedScore;
+}
+void Game::SaveHighScore()
+{
+	if (score > highScore)
+	{
+		std::ofstream file(HIGHSCORE_FILE);
+		if (file.is_open())
+		{
+			file << score;
+			file.close();
+		}
+	}
+}
+void Game::UpdateHighScore()
+{
+	currentScore_Text.setString(toString(score));
+	sf::FloatRect textRect1 = currentScore_Text.getLocalBounds();
+	currentScore_Text.setOrigin(textRect1.width / 2.0f, textRect1.top);
+	currentScore_Text.setPosition(300.0f, 269.0f);
+
+	highestScoreText.setString(toString(highScore));
+	sf::FloatRect textRect2 = highestScoreText.getLocalBounds();
+	highestScoreText.setOrigin(textRect2.width / 2.0f, textRect2.top);
+	highestScoreText.setPosition(300.0f, 345.0f);
 }
