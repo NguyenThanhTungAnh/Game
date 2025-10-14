@@ -21,6 +21,9 @@ private:
 	sf::Sound wingSound;
 	sf::Sound pointSound;
 	sf::Sound hitSound;
+	sf::Clock blickClock;
+	bool isStartTextVisible = true;// trạng thái hiển thị của start_text
+	const float Blink_rate = 0.5f;// tuần suất 0.5s/lần
 	Bird bird;
 	bool is_space_pressed, run_game,start_monitoring;
 	const int move_speed = 270;
