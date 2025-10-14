@@ -41,7 +41,7 @@ private:
 	std::random_device rd;
 	std::uniform_int_distribution<int> dist{ 250,550 };
 	sf::Font font;
-	sf::Text score_text,currentScore_Text;
+	sf::Text score_text,currentScore_Text, start_text;
 	sf::Text highestScoreText;
 	const std::string HIGHSCORE_FILE = "highestscore.txt";
 	int LoadHighScore();
