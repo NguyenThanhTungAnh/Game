@@ -43,6 +43,13 @@ score(0)
 	game_over_sprite.setPosition(-1, -25);
 
 	font.loadFromFile("assets/PS2T.ttf");
+
+	start_text.setFont(font);
+	start_text.setCharacterSize(20);
+	start_text.setFillColor(sf::Color::Black);
+	start_text.setPosition(100, 300);
+	start_text.setString("Press Space to Start");
+	
 	score_text.setFont(font);
 	score_text.setCharacterSize(20);
 	score_text.setFillColor(sf::Color::Black);
@@ -79,6 +86,14 @@ score(0)
 
 void Game::doProcessing(sf::Time& dt)
 {
+	if (run_game && !is_space_pressed) 
+{
+	if(blickClock.getElapsedTime().asSeconds() >= Blink_rate)
+	{
+		isStartTextVisible = !isStartTextVisible; // Đảo trạng thái hiển thị
+		blickClock.restart(); // Đặt lại đồng hồ
+	}
+}
 	if (is_space_pressed)
 	{
 		moveGround(dt);
@@ -210,6 +225,10 @@ void Game::draw()
 	if (is_space_pressed)
 	{
 		win.draw(score_text);
+	}
+	if (run_game && !is_space_pressed && isStartTextVisible)
+	{
+	win.draw(start_text);
 	}
 
 	if (!run_game)
