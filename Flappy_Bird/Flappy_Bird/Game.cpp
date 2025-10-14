@@ -277,7 +277,7 @@ void Game::SaveHighScore()
 		std::ofstream file(HIGHSCORE_FILE);
 		if (file.is_open())
 		{
-			file << 0;
+			file << score;
 			file.close();
 		}
 	}
