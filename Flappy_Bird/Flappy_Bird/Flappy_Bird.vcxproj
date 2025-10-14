@@ -129,12 +129,14 @@
     <ClCompile Include="Bird.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Pipe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bird.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Pipe.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

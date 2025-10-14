@@ -35,7 +35,12 @@ score(0)
 	restart_texture.loadFromFile("assets/restart.png");
 	restart_sprite.setTexture(restart_texture);
 	restart_sprite.setScale(SCALE_FACTOR*0.4 , SCALE_FACTOR *0.4);
-	restart_sprite.setPosition(169,300);
+	restart_sprite.setPosition(222,420);
+
+	game_over_texture.loadFromFile("assets/game_over.png");
+	game_over_sprite.setTexture(game_over_texture);
+	game_over_sprite.setScale(SCALE_FACTOR*0.6, SCALE_FACTOR*0.6);
+	game_over_sprite.setPosition(-1, -25);
 
 	font.loadFromFile("assets/PS2T.ttf");
 	score_text.setFont(font);
@@ -213,6 +218,7 @@ void Game::draw()
 		win.draw(currentScore_Text);
 		win.draw(highestScoreText);
 		win.draw(restart_sprite);
+		win.draw(game_over_sprite);
 		
 	}
 }
@@ -271,7 +277,7 @@ void Game::SaveHighScore()
 		std::ofstream file(HIGHSCORE_FILE);
 		if (file.is_open())
 		{
-			file << score;
+			file << 0;
 			file.close();
 		}
 	}
