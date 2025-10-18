@@ -281,12 +281,21 @@ std::string Game::toString(int num)
 int Game::LoadHighScore()
 {
 	std::ifstream file(HIGHSCORE_FILE);
-	int loadedScore = 0;
+	int loadedScore = 0;// biến tạm để lưu điểm đọc được
+	//ngoại lệ 1: xử lý lỗi không mở được file
 	if (file.is_open())
 	{
-		file >> loadedScore;
+		file >> loadedScore;//Đọc dữ liệu từ file
+		if(file.fail())//ngoại lệ 2:Xử lý lỗi đọc dữ liệu ví dụ như file chứa chữ thay vì số
+		{
+		std::cerr <<"File highscore.txt bi hong hoac khong hop le. Diem duoc thiet lap ve 0" << std::endl;
+			loadedScore=0;
+			//Xóa cờ lỗi của stream để tránh các lỗi khác 
+			file.clear();
+		}
 		file.close();
 	}
+	// nếu file ko mở được thì loadedscore vẫn là 0
 	return loadedScore;
 }
 void Game::SaveHighScore()
