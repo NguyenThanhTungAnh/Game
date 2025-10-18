@@ -11,6 +11,13 @@ int main()
 {
 
     sf::RenderWindow win(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "Flappy Bird", sf::Style::Close | sf::Style::Titlebar);
+
+    sf::Image icon;
+    if (icon.loadFromFile("assets/birdup.png"))
+    {
+        win.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    }
+
     MainMenu mainMenu( WIN_WIDTH, WIN_HEIGHT);
     Game game(win);
 
