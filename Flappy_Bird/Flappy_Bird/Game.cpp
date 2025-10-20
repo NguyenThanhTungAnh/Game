@@ -1,5 +1,6 @@
 ﻿#include "Game.h"
 #include "Globals.h"
+#include <iostream>
 #include <sstream>
 #include <SFML/Audio.hpp>
 #include<fstream>
