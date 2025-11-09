@@ -5,11 +5,12 @@ class Bird
 private:
 	sf::Texture textures[2];
 	const int gravity;
-	const int flap_speed;
+	int flap_speed;
 	float velocity_y;
 	int anim_counter, texture_switch;
 	bool should_fly;
 public:
+	void setFlapSpeed(float speed);
 	sf::Sprite bird_sprite;
 	Bird();
 	void setShouldFly(bool);

@@ -57,3 +57,7 @@ void Bird::setShouldFly(bool should_fly)
 {
 	this->should_fly = should_fly;
 }
+void Bird::setFlapSpeed(float speed)
+{
+	this->flap_speed = speed;
+}

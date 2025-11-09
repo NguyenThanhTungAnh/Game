@@ -4,13 +4,17 @@
 #include <sstream>
 #include <SFML/Audio.hpp>
 #include<fstream>
-Game::Game(sf::RenderWindow& window) : win(window), 
-is_space_pressed(false), 
+#include"MainMenu.h"
+#include "Pipe.h"
+#include "Bird.h"
+Game::Game(sf::RenderWindow& window) : win(window),
+is_space_pressed(false),
 run_game(true),
 start_monitoring(false),
 pipe_counter(59),
 pipe_spawn_time(70),
-score(0)
+score(0),
+mainMenu(WIN_WIDTH, WIN_HEIGHT)
 {
 	win.setFramerateLimit(60);
 	bg_texture.loadFromFile("assets/bg.png");
@@ -42,6 +46,11 @@ score(0)
 	game_over_sprite.setTexture(game_over_texture);
 	game_over_sprite.setScale(SCALE_FACTOR*0.6, SCALE_FACTOR*0.6);
 	game_over_sprite.setPosition(-1, -25);
+
+	mainmenu_texture.loadFromFile("assets/mainmenu_button.png");
+	mainmenu_sprite.setTexture(mainmenu_texture);
+	mainmenu_sprite.setScale(SCALE_FACTOR * 0.147, SCALE_FACTOR * 0.147);
+	mainmenu_sprite.setPosition(222, 518);
 
 	font.loadFromFile("assets/PS2T.ttf");
 
@@ -82,7 +91,10 @@ score(0)
 	hitSound.setBuffer(hitBuffer);
 
 	Pipe::loadTextures();
+	lastpipe_y = (pipe_min_y + pipe_max_y) / 2;
 	highScore = LoadHighScore();
+	gameState = MENU;
+	chooseDifficulty.init(WIN_WIDTH, WIN_HEIGHT);
 }
 
 void Game::doProcessing(sf::Time& dt)
@@ -101,7 +113,9 @@ void Game::doProcessing(sf::Time& dt)
 
 		if (pipe_counter > pipe_spawn_time)
 		{
-			pipes.push_back(Pipe(dist(rd)));
+			int newY = generateNextPipeY();
+			pipes.push_back(Pipe(newY));
+
 			pipe_counter = 0;
 		}
 		pipe_counter++;
@@ -121,93 +135,151 @@ void Game::doProcessing(sf::Time& dt)
 	bird.update(dt);
 }
 
-void Game::startGameLoop() 
+void Game::startGameLoop()
 {
 	sf::Clock clock;
 
-	while (win.isOpen()) 
+	while (win.isOpen())
 	{
 		sf::Time dt = clock.restart();
 		sf::Event event;
-		while (win.pollEvent(event)) 
+
+		// --- VÒNG LẶP XỬ LÝ SỰ KIỆN (INPUT) ---
+		while (win.pollEvent(event))
 		{
+			// 1. Sự kiện Đóng cửa sổ (Luôn kiểm tra đầu tiên)
 			if (event.type == sf::Event::Closed)
 			{
 				win.close();
 			}
-			if (event.type == sf::Event::KeyPressed && run_game)
+
+			// 2. Xử lý Input dựa trên TRẠNG THÁI GAME hiện tại
+			switch (gameState)
 			{
-				if (event.key.code == sf::Keyboard::Space && !is_space_pressed)
-				{
-					is_space_pressed = true;
-					bird.setShouldFly(true);
-					wingSound.play();
+			case MENU:
+				// MainMenu xử lý input và trả về true nếu nút Play được nhấn
+				if (mainMenu.handleInput(win, event)) {
+					gameState = CHOOSE_DIFFICULTY; // Chuyển sang chọn độ khó
 				}
-				if (event.key.code == sf::Keyboard::Space && is_space_pressed)
-				{
-					bird.flapBird(dt);
-					wingSound.play();
+				break;
+
+			case CHOOSE_DIFFICULTY:
+			{
+				// ChooseDifficulty xử lý input và trả về độ khó đã chọn
+				Difficulty chosenDiff = chooseDifficulty.handleInput(win, event);
+				if (chosenDiff != Difficulty::None) {
+					resetGame(chosenDiff); // Áp dụng độ khó và reset game
+					gameState = PLAYING;   // Bắt đầu chơi
 				}
 			}
-			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left && !run_game)
-			{
-				if (restart_sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+			break;
+
+			case PLAYING:
+				// Xử lý input khi đang chơi (Chim nhảy)
+				// Kiểm tra phím Space hoặc Click chuột để nhảy
+				if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space))
 				{
-					restartGame();
+					if (!is_space_pressed) {
+						is_space_pressed = true;
+						bird.setShouldFly(true);
+						wingSound.play();
+					}
+					// Lưu ý: Logic nhảy liên tục (giữ phím) nên xử lý ở ngoài pollEvent nếu cần
+					else {
+						bird.flapBird(dt);
+						wingSound.play();
+					}
 				}
+				break;
+
+			case GAME_OVER:
+				// Xử lý input khi Game Over (Restart)
+				if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+				{
+					// Kiểm tra click vào nút Restart
+					sf::Vector2i mousePos = sf::Mouse::getPosition(win);
+					if (restart_sprite.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)))
+					{
+						restartGame();
+					}
+					if(mainmenu_sprite.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)))
+					{
+						gameState = GameState::MENU;
+					}
+				}
+				break;
+			
 			}
+
+		} // --- KẾT THÚC VÒNG LẶP POLL EVENT ---
+
+		// --- CẬP NHẬT LOGIC (UPDATE) ---
+		// Chỉ cập nhật logic game khi đang ở trạng thái PLAYING
+		if (gameState == PLAYING)
+		{
+			doProcessing(dt);
 		}
 
-		doProcessing(dt);
-		
-		draw();
+		// --- VẼ (RENDER) ---
+		win.clear();
+
+		switch (gameState)
+		{
+		case MENU:
+			mainMenu.draw(win);
+			break;
+		case CHOOSE_DIFFICULTY:
+			chooseDifficulty.draw(win);
+			break;
+		case PLAYING:
+		case GAME_OVER: // Vẽ game nền ngay cả khi Game Over
+			draw(); // Hàm draw() hiện tại của bạn đã xử lý cả Playing và Game Over
+			break;
+		}
+
 		win.display();
 	}
 }
 
 void Game::checkCollisions()
 {
-	if (pipes.size() > 0) 
-	{
-		if (pipes[0].sprite_down.getGlobalBounds().intersects(bird.bird_sprite.getGlobalBounds()) ||
-			pipes[0].sprite_up.getGlobalBounds().intersects(bird.bird_sprite.getGlobalBounds()) ||
-			bird.bird_sprite.getGlobalBounds().top >= 548)
-		{
-			is_space_pressed = false;
-			run_game = false;
-			hitSound.play();
-			if (score > highScore) {
-				SaveHighScore();      
-				highScore = score;    // CẬP NHẬT biến thành viên high score
-			}
+	// 1. Lấy vùng bao của chim để dùng nhiều lần
+	sf::FloatRect birdBounds = bird.bird_sprite.getGlobalBounds();
 
-			// 2. Cập nhật hiển thị (chỉ một lần) khi trò chơi kết thúc
-			UpdateHighScore();
+	// 2. Kiểm tra va chạm với MẶT ĐẤT
+	if (birdBounds.top + birdBounds.height >= 578)
+	{
+		HandleGameOver();
+		return;
+	}
+
+	// 3. Duyệt qua TẤT CẢ các ống để kiểm tra va chạm
+	for (auto& pipe : pipes)
+	{
+		if (pipe.sprite_down.getGlobalBounds().intersects(birdBounds) ||
+			pipe.sprite_up.getGlobalBounds().intersects(birdBounds))
+		{
+			HandleGameOver();
+			return;
 		}
 	}
 }
 
 void Game::checkScore()
 {
-	if (pipes.size() > 0)
+	for (int i = 0; i < pipes.size(); i++)
 	{
-		if (!start_monitoring)
+		// kiểm tra 2 điều kiện:
+		// 1. ông này CHƯA được tính điểm (!pipes[i].isPassed)
+		// 2. cạnh trái của con chim đã vượt qua cạnh phải của ống
+		if (!pipes[i].isPassed && bird.bird_sprite.getGlobalBounds().left > pipes[i].getRightBound())
 		{
-			if (bird.bird_sprite.getGlobalBounds().left > pipes[0].sprite_down.getGlobalBounds().left &&
-				bird.getRightBound() < pipes[0].getRightBound())
-			{
-				start_monitoring = true;
-			}
-		}
-		else
-		{
-			if (bird.bird_sprite.getGlobalBounds().left > pipes[0].getRightBound())
-			{
-				score++;
-				score_text.setString("Score: " + toString(score));
-				pointSound.play();
-				start_monitoring = false;
-			}
+			pipes[i].isPassed = true; // Đánh dấu là đã đi qua để không tính điểm lại lần sau
+			score++;
+
+			// Cập nhật hiển thị và âm thanh
+			score_text.setString("Score: " + std::to_string(score));
+			pointSound.play();
 		}
 	}
 }
@@ -239,7 +311,7 @@ void Game::draw()
 		win.draw(highestScoreText);
 		win.draw(restart_sprite);
 		win.draw(game_over_sprite);
-		
+		win.draw(mainmenu_sprite);
 	}
 }
 
@@ -269,7 +341,7 @@ void Game::restartGame()
 	pipes.clear();
 	score=0;
 	score_text.setString("Score: 0");
-	
+	gameState = GameState::PLAYING;
 }
 
 std::string Game::toString(int num)
@@ -322,4 +394,64 @@ void Game::UpdateHighScore()
 	sf::FloatRect textRect2 = highestScoreText.getLocalBounds();
 	highestScoreText.setOrigin(textRect2.width / 2.0f, textRect2.top);
 	highestScoreText.setPosition(300.0f, 345.0f);
+}
+void Game::resetGame(Difficulty diff) {
+	run_game = true;             // Đảm bảo game loop chạy lại
+	is_space_pressed = false;    // Reset trạng thái chờ vỗ cánh
+	score = 0;                   // Reset điểm
+	score_text.setString("Score: 0");
+	pipe_counter = 71;           // Reset bộ đếm sinh ống
+
+
+	bird.resetBirdPosition();
+	bird.setShouldFly(false); // Đảm bảo chim không tự bay khi vừa vào
+	pipes.clear();
+
+	// Áp dụng độ khó
+	if (diff == Difficulty::Easy) {
+		max_step_y = 250;//độ lệch tối đa giữa 2 ống liên tiếp
+		bird.setFlapSpeed(250.0f); // Chim bay thấp hơn
+		pipe_spawn_time = 70; 
+		Pipe::move_speed = 300;   // Di chuyển nhanh hơn
+	}
+	else if (diff == Difficulty::Hard) {
+		max_step_y = 50;
+		bird.setFlapSpeed(280.0f); // Chim bay cao hơn
+		pipe_spawn_time = 25; // Ống ra nhanh hơn
+		Pipe::move_speed = 250;  
+	}
+}
+void Game::HandleGameOver()
+{
+	// Chỉ xử lý một lần khi vừa mới thua
+	if (run_game)
+	{
+		run_game = false;
+		is_space_pressed = false;
+		hitSound.play();
+
+		// Cập nhật High Score
+		if (score > highScore) {
+			SaveHighScore();
+			highScore = score;
+		}
+		UpdateHighScore();
+
+		// Chuyển trạng thái
+		gameState = GameState::GAME_OVER;
+	}
+}
+int Game::generateNextPipeY()
+{
+	int current_min = lastpipe_y - max_step_y;
+	int current_max = lastpipe_y + max_step_y;
+
+	int actual_min = std::max(pipe_min_y, current_min);
+	int actual_max = std::min(pipe_max_y, current_max);
+
+	std::uniform_int_distribution<int> dist_dynamic(actual_min, actual_max);
+
+	lastpipe_y = dist_dynamic(rd); // 'rd' là random_device của bạn
+
+	return lastpipe_y;
 }

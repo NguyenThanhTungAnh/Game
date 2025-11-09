@@ -1,6 +1,6 @@
 #include "Pipe.h"
 #include "Globals.h"
-Pipe::Pipe(int y_pos)
+Pipe::Pipe(int startY)
 {
 	sprite_down.setTexture(texture_down);
 	sprite_up.setTexture(texture_up);
@@ -8,8 +8,9 @@ Pipe::Pipe(int y_pos)
 	sprite_down.setScale(SCALE_FACTOR, SCALE_FACTOR);
 	sprite_up.setScale(SCALE_FACTOR, SCALE_FACTOR);
 
-	sprite_up.setPosition(WIN_WIDTH, y_pos);
-	sprite_down.setPosition(WIN_WIDTH, y_pos - pipe_distance - sprite_up.getGlobalBounds().height);
+	sprite_up.setPosition(WIN_WIDTH, startY);
+	sprite_down.setPosition(WIN_WIDTH, startY - pipe_distance - sprite_up.getGlobalBounds().height);
+	isPassed = false;
 }
 
 void Pipe::update(sf::Time& dt)

@@ -10,7 +10,7 @@ private:
 
 public:
     MainMenu(float width, float height);
-
+    bool handleInput(sf::RenderWindow& window, sf::Event& event);
     void draw(RenderWindow& window);
     int handleClick(Vector2f mousePos); // 0 = Start, 1 = Score, 2 = Exit, -1 = Ko co chi
 };
