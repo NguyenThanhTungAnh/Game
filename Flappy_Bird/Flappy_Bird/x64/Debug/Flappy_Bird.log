@@ -1,10 +1,23 @@
-﻿  Game.cpp
-C:\game chim bay 2.0\Game\Flappy_Bird\Flappy_Bird\Game.cpp(37,60): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\game chim bay 2.0\Game\Flappy_Bird\Flappy_Bird\Game.cpp(37,41): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\game chim bay 2.0\Game\Flappy_Bird\Flappy_Bird\Game.cpp(42,58): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\game chim bay 2.0\Game\Flappy_Bird\Flappy_Bird\Game.cpp(42,38): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\game chim bay 2.0\Game\Flappy_Bird\Flappy_Bird\Game.cpp(47,58): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\game chim bay 2.0\Game\Flappy_Bird\Flappy_Bird\Game.cpp(47,40): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\game chim bay 2.0\Game\Flappy_Bird\Flappy_Bird\Game.cpp(52,62): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\game chim bay 2.0\Game\Flappy_Bird\Flappy_Bird\Game.cpp(52,40): warning C4305: 'argument': truncation from 'double' to 'float'
-  Flappy_Bird.vcxproj -> C:\game chim bay 2.0\Game\Flappy_Bird\x64\Debug\Flappy_Bird.exe
+﻿  Bird.cpp
+  ChooseDifficulty.cpp
+  Game.cpp
+  main.cpp
+D:\Code\VS\Game\Game\Flappy_Bird\Flappy_Bird\Bird.h(2,9): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  (compiling source file 'Bird.cpp')
+  
+D:\Code\VS\Game\Game\Flappy_Bird\Flappy_Bird\ChooseDifficulty.h(2,10): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  (compiling source file 'ChooseDifficulty.cpp')
+  
+D:\Code\VS\Game\Game\Flappy_Bird\Flappy_Bird\Game.h(2,9): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  (compiling source file 'Game.cpp')
+  
+D:\Code\VS\Game\Game\Flappy_Bird\Flappy_Bird\main.cpp(1,10): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  MainMenu.cpp
+D:\Code\VS\Game\Game\Flappy_Bird\Flappy_Bird\MainMenu.h(2,10): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  (compiling source file 'MainMenu.cpp')
+  
+  Pipe.cpp
+D:\Code\VS\Game\Game\Flappy_Bird\Flappy_Bird\Pipe.h(2,9): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  (compiling source file 'Pipe.cpp')
+  
+  Generating Code...

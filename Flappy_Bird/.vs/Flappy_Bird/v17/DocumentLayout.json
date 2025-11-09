@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Code\\VS\\Game\\Flappy_Bird\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DDAFE941-638E-44D4-A3E9-1ECB49E822BE}|Flappy_Bird\\Flappy_Bird.vcxproj|D:\\Code\\VS\\Game\\Flappy_Bird\\Flappy_Bird\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DDAFE941-638E-44D4-A3E9-1ECB49E822BE}|Flappy_Bird\\Flappy_Bird.vcxproj|solutionrelative:Flappy_Bird\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DDAFE941-638E-44D4-A3E9-1ECB49E822BE}|Flappy_Bird\\Flappy_Bird.vcxproj|D:\\Code\\VS\\Game\\Flappy_Bird\\Flappy_Bird\\Bird.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DDAFE941-638E-44D4-A3E9-1ECB49E822BE}|Flappy_Bird\\Flappy_Bird.vcxproj|solutionrelative:Flappy_Bird\\Bird.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game.cpp",
+              "DocumentMoniker": "D:\\Code\\VS\\Game\\Flappy_Bird\\Flappy_Bird\\Game.cpp",
+              "RelativeDocumentMoniker": "Flappy_Bird\\Game.cpp",
+              "ToolTip": "D:\\Code\\VS\\Game\\Flappy_Bird\\Flappy_Bird\\Game.cpp",
+              "RelativeToolTip": "Flappy_Bird\\Game.cpp",
+              "ViewState": "AgIAAFYBAAAAAAAAAAAAAFMBAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-09T14:45:35.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Bird.cpp",
+              "DocumentMoniker": "D:\\Code\\VS\\Game\\Flappy_Bird\\Flappy_Bird\\Bird.cpp",
+              "RelativeDocumentMoniker": "Flappy_Bird\\Bird.cpp",
+              "ToolTip": "D:\\Code\\VS\\Game\\Flappy_Bird\\Flappy_Bird\\Bird.cpp",
+              "RelativeToolTip": "Flappy_Bird\\Bird.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-09T14:35:57.561Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

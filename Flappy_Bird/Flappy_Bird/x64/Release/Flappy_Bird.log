@@ -1,99 +1,26 @@
 ﻿  Bird.cpp
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\Bird.h(2,9): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
-  (compiling source file 'Bird.cpp')
-  
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\Bird.cpp(62,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  ChooseDifficulty.cpp
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\ChooseDifficulty.cpp(25,60): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\ChooseDifficulty.cpp(25,41): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\ChooseDifficulty.cpp(33,66): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\ChooseDifficulty.cpp(33,45): warning C4305: 'argument': truncation from 'double' to 'float'
   Game.cpp
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\Game.h(2,9): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
-  (compiling source file 'Game.cpp')
-  
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\Game.cpp(37,60): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\Game.cpp(37,41): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\Game.cpp(42,58): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\Game.cpp(42,38): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\Game.cpp(47,58): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\Game.cpp(47,40): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\Game.cpp(52,62): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\Game.cpp(52,40): warning C4305: 'argument': truncation from 'double' to 'float'
   main.cpp
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\main.cpp(1,10): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
   MainMenu.cpp
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(5,11): error C2511: 'MainMenu::MainMenu(float,float)': overloaded member function not found in 'MainMenu'
-      D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.h(2,7):
-      see declaration of 'MainMenu'
-  
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(8,9): error C2065: 'titleTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(10,9): error C2065: 'titleSprite': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(10,32): error C2065: 'titleTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(11,9): error C2065: 'titleSprite': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(12,9): error C2065: 'titleSprite': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(16,9): error C2065: 'bgTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(18,9): error C2065: 'bgSprite': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(18,29): error C2065: 'bgTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(19,9): error C2065: 'bgSprite': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(20,9): error C2065: 'bgSprite': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(24,9): error C2065: 'groundTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(26,9): error C2065: 'groundSprite': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(26,33): error C2065: 'groundTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(27,9): error C2065: 'groundSprite': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(28,9): error C2065: 'groundSprite': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(32,9): error C2065: 'startTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(34,9): error C2065: 'startButton': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(34,32): error C2065: 'startTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(35,9): error C2065: 'startButton': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(36,9): error C2065: 'startButton': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(37,9): error C2065: 'startButton': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(41,9): error C2065: 'exitTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(43,9): error C2065: 'exitButton': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(43,31): error C2065: 'exitTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(44,9): error C2065: 'exitButton': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(45,9): error C2065: 'exitButton': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(46,9): error C2065: 'exitButton': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(49,5): error C2065: 'startButton': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(49,28): error C2065: 'startTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(50,5): error C2065: 'exitButton': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(50,27): error C2065: 'exitTexture': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(54,16): error C2039: 'draw': is not a member of 'MainMenu'
-      D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.h(2,7):
-      see declaration of 'MainMenu'
-  
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(54,16): error C2182: 'draw': this use of 'void' is not valid
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(54,21): error C2065: 'RenderWindow': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(54,35): error C2065: 'window': undeclared identifier
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(55,1): error C2143: syntax error: missing ';' before '{'
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(56,5): error C2059: syntax error: 'if'
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(60,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(60,11): error C3484: syntax error: expected '->' before the return type
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(60,12): error C3613: missing return type after '->' ('int' assumed)
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(60,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(60,12): error C2146: syntax error: missing ';' before identifier 'draw'
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(61,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(61,11): error C3484: syntax error: expected '->' before the return type
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(61,12): error C3613: missing return type after '->' ('int' assumed)
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(61,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(61,5): error C2086: 'int window': redefinition
-      D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(60,5):
-      see declaration of 'window'
-  
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(61,12): error C2146: syntax error: missing ';' before identifier 'draw'
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(64,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(64,11): error C3484: syntax error: expected '->' before the return type
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(64,12): error C3613: missing return type after '->' ('int' assumed)
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(64,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(64,5): error C2086: 'int window': redefinition
-      D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(60,5):
-      see declaration of 'window'
-  
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(64,12): error C2146: syntax error: missing ';' before identifier 'draw'
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(65,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(65,11): error C3484: syntax error: expected '->' before the return type
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(65,12): error C3613: missing return type after '->' ('int' assumed)
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(65,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(65,5): error C2086: 'int window': redefinition
-      D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(60,5):
-      see declaration of 'window'
-  
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(65,12): error C2146: syntax error: missing ';' before identifier 'draw'
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(66,1): error C2059: syntax error: '}'
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(66,1): error C2143: syntax error: missing ';' before '}'
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(68,15): error C2039: 'handleClick': is not a member of 'MainMenu'
-      D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.h(2,7):
-      see declaration of 'MainMenu'
-  
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(69,1): error C2143: syntax error: missing ';' before '{'
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\MainMenu.cpp(69,1): error C2447: '{': missing function header (old-style formal list?)
   Pipe.cpp
-D:\New folder\Game\Flappy_Bird\Flappy_Bird\Pipe.h(2,9): error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
-  (compiling source file 'Pipe.cpp')
-  
+D:\Code\VS\Game\Flappy_Bird\Flappy_Bird\Pipe.cpp(11,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating code
+  343 of 352 functions (97.4%) were compiled, the rest were copied from previous compilation.
+    4 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Flappy_Bird.vcxproj -> D:\Code\VS\Game\Flappy_Bird\x64\Release\Flappy_Bird.exe

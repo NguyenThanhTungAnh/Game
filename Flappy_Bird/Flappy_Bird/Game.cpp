@@ -11,7 +11,7 @@ Game::Game(sf::RenderWindow& window) : win(window),
 is_space_pressed(false),
 run_game(true),
 start_monitoring(false),
-pipe_counter(59),
+pipe_counter(50),
 pipe_spawn_time(70),
 score(0),
 mainMenu(WIN_WIDTH, WIN_HEIGHT)
@@ -337,7 +337,7 @@ void Game::restartGame()
 	bird.setShouldFly(false);
 	run_game = true;
 	is_space_pressed = false;
-	pipe_counter = 71;
+	pipe_counter = 50;
 	pipes.clear();
 	score=0;
 	score_text.setString("Score: 0");
