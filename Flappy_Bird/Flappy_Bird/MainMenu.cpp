@@ -73,3 +73,23 @@ int MainMenu::handleClick(Vector2f mousePos)
         return 1;
     return -1;
 }
+MenuAction MainMenu::handleInput(sf::RenderWindow& window, sf::Event& event)
+{
+    if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+    {
+        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+
+        // 1. Kiểm tra nút PLAY
+        if (startButton.getGlobalBounds().contains(mousePosF)) {
+            return MenuAction::Play;
+        }
+
+        // 2. Kiểm tra nút EXIT
+        if (exitButton.getGlobalBounds().contains(mousePosF)) {
+            return MenuAction::Exit;
+        }
+    }
+
+    return MenuAction::None;
+}

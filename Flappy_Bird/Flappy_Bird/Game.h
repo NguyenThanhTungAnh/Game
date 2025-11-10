@@ -14,7 +14,8 @@ enum GameState {
 	MENU,
 	CHOOSE_DIFFICULTY, // <--- Trạng thái mới
 	PLAYING,
-	GAME_OVER
+	GAME_OVER,
+	EXIT
 };
 class Game
 {

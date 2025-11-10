@@ -157,12 +157,16 @@ void Game::startGameLoop()
 			switch (gameState)
 			{
 			case MENU:
-				// MainMenu xử lý input và trả về true nếu nút Play được nhấn
-				if (mainMenu.handleInput(win, event)) {
-					gameState = CHOOSE_DIFFICULTY; // Chuyển sang chọn độ khó
+			{
+				MenuAction action = mainMenu.handleInput(win, event);
+				if (action == MenuAction::Play) {
+					gameState = GameState::CHOOSE_DIFFICULTY;
+				}
+				else if (action == MenuAction::Exit) {
+					gameState = GameState::EXIT;
 				}
 				break;
-
+			}
 			case CHOOSE_DIFFICULTY:
 			{
 				// ChooseDifficulty xử lý input và trả về độ khó đã chọn
@@ -182,6 +186,7 @@ void Game::startGameLoop()
 					if (!is_space_pressed) {
 						is_space_pressed = true;
 						bird.setShouldFly(true);
+						bird.flapBird(dt);
 						wingSound.play();
 					}
 					// Lưu ý: Logic nhảy liên tục (giữ phím) nên xử lý ở ngoài pollEvent nếu cần
@@ -218,6 +223,11 @@ void Game::startGameLoop()
 		if (gameState == PLAYING)
 		{
 			doProcessing(dt);
+		}
+		if (gameState == GameState::EXIT)
+		{
+			win.close(); // Đóng cửa sổ một cách an toàn
+			return;      // Thoát khỏi hàm startGameLoop ngay lập tức
 		}
 
 		// --- VẼ (RENDER) ---
@@ -400,7 +410,7 @@ void Game::resetGame(Difficulty diff) {
 	is_space_pressed = false;    // Reset trạng thái chờ vỗ cánh
 	score = 0;                   // Reset điểm
 	score_text.setString("Score: 0");
-	pipe_counter = 71;           // Reset bộ đếm sinh ống
+	pipe_counter = 50;           // Reset bộ đếm sinh ống
 
 
 	bird.resetBirdPosition();

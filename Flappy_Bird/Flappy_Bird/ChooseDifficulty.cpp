@@ -77,21 +77,3 @@ Difficulty ChooseDifficulty::handleInput(sf::RenderWindow& window, sf::Event& ev
     }
     return Difficulty::None;
 }
-bool MainMenu::handleInput(sf::RenderWindow& window, sf::Event& event)
-{
-    // Xử lý sự kiện click chuột vào nút
-    if (event.type == sf::Event::MouseButtonPressed)
-    {
-        if (event.mouseButton.button == sf::Mouse::Left)
-        {
-            // Lấy tọa độ chuột
-            float mouseX = static_cast<float>(event.mouseButton.x);
-            float mouseY = static_cast<float>(event.mouseButton.y);
-
-            
-            return true;
-        }
-    }
-
-    return false; // Chưa có hành động bắt đầu game nào
-}
